@@ -1,7 +1,12 @@
 #!/usr/bin/python
+
+# NFC Attendance System
+# Date Last Modified : 24-03-2015
+# Authors : Anagh Kumar Baranwal, Manush Bhatt, Arnav Nag
+# License : GPLv3
 import MySQLdb
 
-db = MySQLdb.connect(host="localhost",user="manush",passwd="manush123",db="nasadb")
+db = MySQLdb.connect(host="localhost",user="admin",passwd="admin123",db="nasadb")
 
 cur=db.cursor()
 
