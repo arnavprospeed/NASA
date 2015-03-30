@@ -30,3 +30,17 @@ def add(values):
 
 	cur.execute(sql)
 	db.close()
+
+def check(value):
+	db = MySQLdb.connect(host="localhost",user="admin",passwd="admin123",db="nasadb")
+	cur=db.cursor()
+	
+	sql = " SELECT * FROM STUDENT WHERE C_ID = ? ", (value,)
+	cur.execute(sql)
+	row = cur.fetchnone() // USE cursor.fetchone()[0] if using COUNT(*)
+	
+	if row is None:
+		print "Invalid ID"
+	else:
+		print "WELCOME ",row[1]
+	
