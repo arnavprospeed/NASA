@@ -37,7 +37,9 @@ def check(value):
 	
 	sql = " SELECT * FROM STUDENT WHERE C_ID = ? ", (value,)
 	cur.execute(sql)
-	row = cur.fetchnone() // USE cursor.fetchone()[0] if using COUNT(*)
+	
+	#  USE cursor.fetchone()[0] if using COUNT(*)
+	row = cur.fetchnone()
 	
 	if row is None:
 		print "Invalid ID"
