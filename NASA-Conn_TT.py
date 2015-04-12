@@ -4,8 +4,9 @@ def init():
 	i=0
 	for i in range(5):
 		d=str(i+1)
-		day+d = MySQLdb.connect(host="localhost",user="admin",passwd="admin123")
-		cur=(day+d).cursor()
+		day="day"+d
+		db = MySQLdb.connect(host="localhost",user="admin",passwd="admin123",db=day)
+		cur=db.cursor()
 
 		h1 = """CREATE TABLE h1 (
 			C_ID INT NOT NULL,
@@ -27,6 +28,5 @@ def init():
 		cur.execute(h5)
 		cur.execute(h6)
 		cur.execute(h7)
-		sql="""Show create table h1;"""
-		cur.execute(sql)
-		(day+d).close()
+		db.close()
+init()
