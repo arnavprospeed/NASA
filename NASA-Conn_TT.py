@@ -30,5 +30,3 @@ def init():
 		sql="""Show create table h1;"""
 		cur.execute(sql)
 		(day+d).close()
-		
-		
