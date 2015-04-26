@@ -1,6 +1,7 @@
 import MySQLdb
-from invalid_led import invalid
-
+from disp2 import HD44780
+import RPi.GPIO as GPIO
+import time
 def init():
 	i=0
 	for i in range(5):
@@ -64,11 +65,26 @@ def check(value):
 	
 	#  USE cursor.fetchone()[0] if using COUNT(*)
 	row = cur.fetchone()
-	
+	lcd=HD44780()
 	if row is None:
-		invalid()
-		print "Invalid ID"
+		print("Invalid ID")
+		lcd.message("Invalid ID")
+		blink()
 	else:
-		print "WELCOME ",row[1]
+		disp="WELCOME\n"+str(row[1])
+		print (disp)
+		lcd.message(disp)
+	GPIO.cleanup()
 
+
+def blink():
+        # to use Raspberry Pi board pin numbers
+#        GPIO.setmode(GPIO.BCM)
+        # set up GPIO output channel
+        GPIO.setup(17, GPIO.OUT)
+        GPIO.output(17,True)
+        time.sleep(5)
+#        GPIO.output(17,False)
+#        time.sleep(1)
+#        GPIO.cleanup()
 
